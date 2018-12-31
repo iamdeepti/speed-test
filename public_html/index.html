@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Speed test</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+        <link rel="stylesheet" href="index.css" type="text/css">
+    <!--jQuery library--> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!--Latest compiled and minified JavaScript--> 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="script.js" async></script>
+    <style>
+        body{
+            background-color: #f1f9ea;
+        }
+        .textOriginal{
+            background-color: #f6b7b7;
+            color: #be381a;
+        }
+        .timer{
+            positon: relative;
+            float:right;
+        }
+        textarea{
+            margin-top: 2%;
+            width: 100%;
+            border: 5px solid gray;
+        }
+    </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <div class="jumbotron">
+                        <h3>Enter the following text correctly in the box given below. The timer starts as soon as you start typing!</h3>
+                    </div>
+                        <div class="textOriginal">text to be entered</div>
+                        <div>
+                            <textarea placeholder="enter text here" ></textarea>
+                        </div>
+                        <div class="reset">
+                            <input type="reset" value="Reset" class="btn btn-primary reset"/>
+                            <div class="timer">00:00:00</div>
+                        </div>
+                </div> 
+                
+            </div>
+        </div>
+    </body>
+</html>
