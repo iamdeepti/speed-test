@@ -1,58 +1,104 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
-    <head>
-        <title>Speed test</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-        <link rel="stylesheet" href="index.css" type="text/css">
-    <!--jQuery library--> 
+  <head>
+    <title>Speed test</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+
+    <!--jQuery library-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!--Latest compiled and minified JavaScript--> 
+    <!--Latest compiled and minified JavaScript-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="script.js" async></script>
     <style>
-        body{
-            background-color: #f1f9ea;
-        }
-        .textOriginal{
-            background-color: #f6b7b7;
-            color: #be381a;
-        }
-        .timer{
-            positon: relative;
-            float:right;
-        }
-        textarea{
-            margin-top: 2%;
-            width: 100%;
-            border: 5px solid gray;
-        }
+      body {
+        background-image: linear-gradient(#d1eafb,#fff);
+        width: 100%;
+        
+      }
+      .textOriginal {
+        padding: 5px;
+        background-image:linear-gradient(#fff,#d8d8d8);
+        color: #06a;
+        font-size: 18px;
+      }
+      .timer {
+        position: relative;
+        float: right;
+        background-color:#06a;
+        color: white;
+        padding: 5px;
+      }
+      textarea {
+        margin-top: 2%;
+        width: 100%;
+        min-height: 100px;
+        border: 5px solid gray;
+        margin-bottom: 2%;
+      }
+      .instruction{
+        margin: auto;
+          margin-top: 5%;
+          background-color:#06a;
+          color: white;
+          padding: 10px;
+          margin-bottom: 2%;
+        border-radius: 2px;
+      }
+      .result{
+          margin-top: 5%;
+          background-color: #94E192;
+          padding: 5px;
+          display: none;
+      }
+      .lines{
+          padding: 5px;
+      }
+      .lines>input{
+          text-align: center;
+      }
+      .title{
+          text-align: center;
+          color: #06a;
+      }
+      .reset{
+        background-color: #06a;
+        color: white;
+      }
     </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-8 col-sm-offset-2">
-                    <div class="jumbotron">
-                        <h3>Enter the following text correctly in the box given below. The timer starts as soon as you start typing!</h3>
-                    </div>
-                        <div class="textOriginal">text to be entered</div>
-                        <div>
-                            <textarea placeholder="enter text here" ></textarea>
-                        </div>
-                        <div class="reset">
-                            <input type="reset" value="Reset" class="btn btn-primary reset"/>
-                            <div class="timer">00:00:00</div>
-                        </div>
-                </div> 
-                
-            </div>
+  </head>
+  <body>
+    <div class="container">
+        <div class="title"><h1 >Typing Speed test</h1>
+        <h4> Check your typing speed here</h4>
+    </div>
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div class="instruction">
+                <h3>
+                  Enter the following text correctly in the box given below. The
+                  timer starts as soon as you start typing!
+                </h3>
+              </div>
+          <div class="lines">
+            <span> No of lines :</span>  
+            <input type='text' value="2" style='width: 25px;' onchange="reset()"> </input></div>
+          <div class="textOriginal">text to be entered</div>
+          <span class='result'></span>
+          <div>
+            <textarea placeholder="enter text here"></textarea>
+          </div>
+          <div>
+            <input type="reset" value="Reset" class="btn btn-primary reset" />
+            <div class="timer">00:00:00</div>
+          </div>
         </div>
-    </body>
+      </div>
+    </div>
+  </body>
 </html>

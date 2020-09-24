@@ -1,11 +1,15 @@
-var textOriginal = document.querySelector(".textOriginal").innerHTML;
+var textOriginal = document.querySelector(".textOriginal");
 var textArea = document.querySelector("textarea");
 var timer = document.querySelector(".timer");
+var result = document.querySelector(".result");
 var resetButton = document.querySelector(".reset");
 var theTimer = [0,0,0,0];
+var sentences = document.querySelector(".lines>input");
 var interval;
 var timerRunning = false;
-
+window.onload = function(){
+    generatePara();
+}
 function runTheTimer(){
     theTimer[3]++;
     theTimer[0] = Math.floor((theTimer[3]/100)/60);
@@ -31,14 +35,34 @@ function start(){
    }
      
 }
+async function generatePara(){
+    var noOfSentences = sentences.value;
+    
+    textOriginal.innerHTML = 'Please wait loading data ....';
+    var res = await axios.get(`http://metaphorpsum.com/paragraphs/1/${noOfSentences}`);
+    // console.log('res'+res.data);
+    textOriginal.innerHTML = res.data;
+}
 function spellcheck(){
     var textEntered = textArea.value;
     
-    let textMatch = textOriginal.substring(0, textEntered.length);
+    let textMatch = textOriginal.innerHTML.substring(0, textEntered.length);
     
-    if(textOriginal === textEntered)
+    if(textOriginal.innerHTML === textEntered)
     {
         textArea.style.border = '5px solid green';
+        var str = textEntered;
+        str = str.replace(/(^\s*)|(\s*$)/gi,"");
+        str = str.replace(/[ ]{2,}/gi," ");
+        str = str.replace(/\n /,"\n");
+        var words = str.split(' ').length;
+        console.log(words);
+        var speed = (words/(theTimer[0]*60+theTimer[1]))*60;
+        speed = Math.floor(speed);
+        
+        var result_string = ('Your typing speed is <strong>' + speed + ' words per minute </strong>');
+        result.innerHTML = result_string;
+        result.style.display = 'block';
         clearInterval(interval);
     }
     else{
@@ -56,11 +80,13 @@ function reset(){
     interval = null;
     theTimer = [0,0,0,0];
     timerRunning = false;
-    
     textArea.value = "";
-    timer.innerHTML = "00:00:00"
+    timer.innerHTML = "00:00:00";
+    result.innerHTML = "";
+    result.style.display = 'none';
+    generatePara();
     textArea.style.borderColor = "gray";
-    console.log("reset button was pressed");
+    // console.log("reset button was pressed");
 }
 textArea.addEventListener("keypress", start, false);
 textArea.addEventListener("keyup", spellcheck, false);
