@@ -39,7 +39,7 @@ async function generatePara(){
     var noOfSentences = sentences.value;
     
     textOriginal.innerHTML = 'Please wait loading data ....';
-    var res = await axios.get(`http://metaphorpsum.com/paragraphs/1/${noOfSentences}`);
+    var res = await axios.get(`https://baconipsum.com/api/?type=meat&sentences=${noOfSentences}&format=text`);
     // console.log('res'+res.data);
     textOriginal.innerHTML = res.data;
 }
